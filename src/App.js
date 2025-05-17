@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import ReactQuill from "react-quill";
+// import "react-quill/dist/quill.snow.css";
+import Home from "./pages/Home";
+import Createblog from "./pages/Createblog";
+import { BrowserRouter,Routes,Route } from "react-router-dom";
+import './App.css'
+import { Toaster } from "react-hot-toast";
+import Viewblog from "./pages/Viewblog";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Toaster
+          position="top-right"
+          toastOptions={{
+            success: {
+              duration: 4000,
+              theme: {
+                primary: '#4aed88',
+              },
+            },
+            error: {
+              duration: 4000,
+              theme: {
+                primary: '#ff4d4f', // Optional: custom color for error
+              },
+            },
+          }}
+        />
+
+    <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/createblog" element={<Createblog/>}/>
+            <Route path="/createblog/:id" element={<Createblog/>}/>
+            <Route path="/viewblog/:id" element={<Viewblog/>}/>
+        </Routes>
+    </BrowserRouter>
+    </>
   );
 }
 

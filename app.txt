@@ -1,0 +1,99 @@
+const styles = {
+  container: {
+    maxWidth: '700px',
+    margin: '2rem auto',
+    padding: '1.5rem',
+    border: '1px solid #ccc',
+    borderRadius: '12px',
+    backgroundColor: '#fdfdfd',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+  },
+  title: {
+    textAlign: 'center',
+    marginBottom: '1rem',
+  },
+  input: {
+    width: '100%',
+    padding: '0.8rem',
+    marginBottom: '1rem',
+    fontSize: '1rem',
+    border: '1px solid #ccc',
+    borderRadius: '8px',
+  },
+  quill: {
+    marginBottom: '1rem',
+  },
+  button: {
+    padding: '0.75rem 1.5rem',
+    fontSize: '1rem',
+    backgroundColor: '#0077cc',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    display: 'block',
+    margin: 'auto',
+  },
+};
+
+<div style={{ maxWidth: 900, margin: "auto", padding: 20 }}>
+      <h1>Blog Editor</h1>
+
+      <div style={{ marginBottom: 20 }}>
+        <input
+          style={{ width: "100%", padding: 10, fontSize: 18, marginBottom: 10 }}
+          type="text"
+          placeholder="Title"
+          value={title}
+          onChange={(e) => handleChange(setTitle)(e.target.value)}
+        />
+        <ReactQuill
+          theme="snow"
+          value={content}
+          onChange={handleChange(setContent)}
+          style={{ height: 200, marginBottom: 10 }}
+        />
+        <input
+          style={{ width: "100%", padding: 10, fontSize: 16, marginBottom: 10 }}
+          type="text"
+          placeholder="Tags (comma separated)"
+          value={tags}
+          onChange={(e) => handleChange(setTags)(e.target.value)}
+        />
+
+        <button onClick={saveDraft} disabled={saving} style={{ marginRight: 10 }}>
+          Save Draft
+        </button>
+        <button onClick={publishBlog} disabled={saving}>
+          Publish
+        </button>
+
+        <div style={{ marginTop: 10, color: "green", minHeight: 20 }}>{autoSaveMessage}</div>
+      </div>
+
+      <hr />
+
+      <h2>Drafts</h2>
+      {drafts.length === 0 && <p>No drafts yet</p>}
+      <ul>
+        {drafts.map((b) => (
+          <li key={b._id || b.id}>
+            <a href="#!" onClick={() => editBlog(b)}>
+              {b.title || "(Untitled)"}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <h2>Published Blogs</h2>
+      {published.length === 0 && <p>No published blogs yet</p>}
+      <ul>
+        {published.map((b) => (
+          <li key={b._id || b.id}>
+            <a href="#!" onClick={() => editBlog(b)}>
+              {b.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
