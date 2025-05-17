@@ -23,7 +23,7 @@ function App() {
             error: {
               duration: 4000,
               theme: {
-                primary: '#ff4d4f', // Optional: custom color for error
+                primary: '#ff4d4f',
               },
             },
           }}
