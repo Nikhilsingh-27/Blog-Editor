@@ -1,3 +1,4 @@
 npm install
-npm start
-node
+
+for frontend: npm start
+for backend: node server.js
